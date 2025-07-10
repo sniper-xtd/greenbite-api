@@ -21,9 +21,9 @@ app.use(express.json());
 // ✅ CORS with credentials enabled
 app.use(
   cors({
-    origin: 'http://localhost:5173', // your frontend origin
-    credentials: true, // ✅ allow sending cookies
-  })
+    origin:  ['http://localhost:5173', 'https://your-frontend-domain.com'], 
+    credentials: true,
+    })
 );
 
 // Rate limiting

@@ -50,12 +50,13 @@ router.post('/signup', validate(z.object({
     });
 
     res
-      .cookie('token', token, {
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-      })
+  .cookie('token', token, {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: true, // ✅ Always secure since we're on Railway
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  })
+
       .status(201)
       .json({ user });
   } catch (err) {
@@ -85,12 +86,13 @@ router.post('/signin', validate(z.object({
     });
 
     res
-      .cookie('token', token, {
-        httpOnly: true,
-        sameSite: 'lax',
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-      })
+  .cookie('token', token, {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: true, // ✅ Always secure since we're on Railway
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  })
+
       .json({ user: { id: user.id, name: user.name, email: user.email } });
   } catch (err) {
     console.error('Signin error:', err);

@@ -21,10 +21,13 @@ app.use(express.json());
 // ✅ CORS with credentials enabled
 app.use(
   cors({
-    origin:  ['http://localhost:5173', 'https://your-frontend-domain.com'], 
+    origin: ['http://localhost:5173', 'https://your-frontend-domain.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
-    })
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
 );
+
 
 // Rate limiting
 const limiter = rateLimit({
